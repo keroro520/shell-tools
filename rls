@@ -1,0 +1,9 @@
+#!/bin/sh
+
+args=$1
+options=$2
+
+declare $(echo $args \
+          | awk -F ":" '{printf("remote_host=%s remote_path=%s", $1, $2)}')
+
+ssh $remote_host ls "$remote_path" $options
